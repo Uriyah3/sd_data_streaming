@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "org.springframework.boot" version "2.0.1.RELEASE"
 }
 
 group 'java-streaming'
@@ -11,8 +12,19 @@ repositories {
     mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+bootRun {
+    main = 'Main'
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile("org.slf4j:slf4j-nop:1.7.25")
     compile("com.pubnub:pubnub-gson:4.23.0")
+    compile 'com.google.cloud.sql:postgres-socket-factory:1.0.13'
+    compile 'org.postgresql:postgresql:42.2.5'
 }
+
