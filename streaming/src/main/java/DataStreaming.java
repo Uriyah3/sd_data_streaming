@@ -25,16 +25,13 @@ public class DataStreaming {
     private String pub_key = "pub-c-40a0587c-4daa-4cbd-b655-ccd76a040a39";
     private String sub_key;
     private String channelname;
-    private Connection connection;
+    private PSQLConnection psqlConnection;
 
-    public DataStreaming(String sub_key,String channelname){
+
+    public DataStreaming(String sub_key,String channelname,String psql_credential){
         this.sub_key = sub_key;
         this.channelname = channelname;
-        try{
-            this.connection = connect();
-        } catch(SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        this.psqlConnection = new PSQLConnection(psql_credential);
     }
 
     public void executeStreaming(){
@@ -123,7 +120,7 @@ public class DataStreaming {
 
                 String SQL = "INSERT INTO wikipedia_entries (event, item, username, link) values (?, ?, ?, ?)";
                 
-                try (PreparedStatement pstmt = connection.prepareStatement(SQL)) {
+                try (PreparedStatement pstmt = psqlConnection.connection.prepareStatement(SQL)) {
         
                     pstmt.setString(1, json.get("event").toString());
                     pstmt.setString(2, json.get("item").toString());
@@ -146,15 +143,6 @@ public class DataStreaming {
         });
 
         pubnub.subscribe().channels(Arrays.asList(channelName)).execute();
-    }
-
-     /**
-     * Connect to the PostgreSQL database
-     *
-     * @return a Connection object
-     */
-    public Connection connect() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://google/test?cloudSqlInstance=esysapp-209521:southamerica-east1:sd12019instance&socketFactory=com.google.cloud.sql.postgres.SocketFactory&user=test&password=testPassword123");
     }
 
 }
