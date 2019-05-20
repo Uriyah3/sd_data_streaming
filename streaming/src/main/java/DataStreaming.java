@@ -9,6 +9,14 @@ import com.pubnub.api.models.consumer.PNPublishResult;
 import com.pubnub.api.models.consumer.PNStatus;
 import com.pubnub.api.models.consumer.pubsub.PNMessageResult;
 import com.pubnub.api.models.consumer.pubsub.PNPresenceEventResult;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 import java.util.Arrays;
 
@@ -107,8 +115,21 @@ public class DataStreaming {
 
                 //Aqui se sacan los datos necesarios para la bd
 
-                System.out.println(json.get("user").toString());
-                System.out.println(json.get("item").toString());
+                String SQL = "INSERT INTO wikipedia_entries (event, item, username, link) values (?, ?, ?, ?)";
+                
+                try (Connection conn = connect();
+                        PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        
+                    pstmt.setString(1, json.get("event").toString());
+                    pstmt.setString(2, json.get("item").toString());
+                    pstmt.setString(3, json.get("user").toString());
+                    pstmt.setString(4, json.get("link").toString());
+        
+                    pstmt.executeUpdate();
+                    pstmt.close();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
 
             }
 
@@ -121,5 +142,13 @@ public class DataStreaming {
         pubnub.subscribe().channels(Arrays.asList(channelName)).execute();
     }
 
+     /**
+     * Connect to the PostgreSQL database
+     *
+     * @return a Connection object
+     */
+    public Connection connect() throws SQLException {
+        return DriverManager.getConnection("jdbc:postgresql://google/test?cloudSqlInstance=esysapp-209521:southamerica-east1:sd12019instance&socketFactory=com.google.cloud.sql.postgres.SocketFactory&user=test&password=testPassword123");
+    }
 
 }
