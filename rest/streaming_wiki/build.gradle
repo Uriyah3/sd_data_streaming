@@ -14,12 +14,19 @@ repositories {
     mavenCentral()
 }
 
+//compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+//compile 'com.google.cloud.sql:postgres-socket-factory:1.0.13'
+//compile 'org.postgresql:postgresql:42.2.5'
+
+
 dependencies {
-    compile 'javax.persistence:persistence-api:1.0'
-    compile 'org.springframework.data:spring-data-jpa:1.0.0.RELEASE'
+    compile 'javax.persistence:javax.persistence-api:2.2'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'com.google.cloud.sql:postgres-socket-factory:1.0.13'
+    compile 'org.postgresql:postgresql:42.2.5'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'org.postgresql:postgresql'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    
 }
