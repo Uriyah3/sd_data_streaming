@@ -38691,7 +38691,7 @@ var render = function() {
       _c("div", { staticClass: "card-header" }, [
         _c("div", { staticClass: "float-left" }, [
           _vm._v(
-            "\n                Última actividad en Wikipedia (/api/latest_wiki_entries)\n            "
+            "\n                Latest activity in Wikipedia (/api/latest_wiki_entries)\n            "
           )
         ]),
         _vm._v(" "),
@@ -38705,7 +38705,7 @@ var render = function() {
             },
             [
               _c("span", { staticClass: "glyphicon glyphicon-refresh" }),
-              _vm._v(" Actualizar")
+              _vm._v(" Refresh")
             ]
           )
         ])
@@ -38719,7 +38719,7 @@ var render = function() {
             ? _c(
                 "p",
                 { staticClass: "mb-0", staticStyle: { padding: "1.25rem" } },
-                [_vm._v("\n                Cargando datos...\n            ")]
+                [_vm._v("\n                Loading data...\n            ")]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -38800,13 +38800,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", { attrs: { width: "15%" } }, [_vm._v("Evento")]),
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Event")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "35%" } }, [_vm._v("Cosa")]),
+        _c("th", { attrs: { width: "35%" } }, [_vm._v("Item")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "20%" } }, [_vm._v("Usuario")]),
+        _c("th", { attrs: { width: "20%" } }, [_vm._v("User")]),
         _vm._v(" "),
-        _c("th", { attrs: { width: "30%" } }, [_vm._v("Enlace")])
+        _c("th", { attrs: { width: "30%" } }, [_vm._v("Link")])
       ])
     ])
   }

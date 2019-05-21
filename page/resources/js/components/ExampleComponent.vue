@@ -3,27 +3,27 @@
         <div class="card card-default">
             <div class="card-header">
                 <div class="float-left">
-                    Última actividad en Wikipedia (/api/latest_wiki_entries)
+                    Latest activity in Wikipedia (/api/latest_wiki_entries)
                 </div>
                 <div class="float-right">
-                    <button type="button" class="btn btn-primary" v-on:click="getEntries"><span class="glyphicon glyphicon-refresh"></span> Actualizar</button>
+                    <button type="button" class="btn btn-primary" v-on:click="getEntries"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
                 </div>
             </div>
 
             <div class="card-body" style="padding:0rem;">
                 <!-- Loading entries -->
                 <p class="mb-0" v-if="entries.length === 0" style="padding:1.25rem;">
-                    Cargando datos...
+                    Loading data...
                 </p>
 
                 <!-- Wikipedia entries Tokens -->
                 <table class="table table-striped table-hover mb-0" v-if="entries.length > 0">
                     <thead>
                         <tr>
-                            <th width=15%>Evento</th>
-                            <th width=35%>Cosa</th>
-                            <th width=20%>Usuario</th>
-                            <th width=30%>Enlace</th>
+                            <th width=15%>Event</th>
+                            <th width=35%>Item</th>
+                            <th width=20%>User</th>
+                            <th width=30%>Link</th>
                         </tr>
                     </thead>
 
