@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/latest_wiki_entries', function () {
+    $client = new \GuzzleHttp\Client();
+    $request = $client->get('https://apirest-dot-esysapp-209521.appspot.com/api/wiki_entries_100');
+    $response = $request->getBody();
+
+    return $response;
+});
+
+Route::get('/all_wiki_entries', function () {
+    $client = new \GuzzleHttp\Client();
+    $request = $client->get('https://apirest-dot-esysapp-209521.appspot.com/api/wiki_entries');
+    $response = $request->getBody();
+
+    return $response;
 });

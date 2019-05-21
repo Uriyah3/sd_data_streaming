@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <!-- No Tokens Notice -->
                     <p class="mb-0" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
+                        You have not created any personal access tokens. These are used to access the api from outside this application, make sure to safeguard these tokens.
                     </p>
 
                     <!-- Personal Access Tokens -->

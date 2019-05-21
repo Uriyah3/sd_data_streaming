@@ -1782,6 +1782,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+    axios.get('api/all_wiki_entries').then(function (response) {
+      return console.log(response);
+    });
   }
 });
 
@@ -38613,7 +38616,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Example Component")
@@ -39374,7 +39377,7 @@ var render = function() {
           _vm.tokens.length === 0
             ? _c("p", { staticClass: "mb-0" }, [
                 _vm._v(
-                  "\n                    You have not created any personal access tokens.\n                "
+                  "\n                    You have not created any personal access tokens. These are used to access the api from outside this application, make sure to safeguard these tokens.\n                "
                 )
               ])
             : _vm._e(),
@@ -52286,8 +52289,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/observatorio/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/observatorio/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/observatorio/page/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/observatorio/page/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
