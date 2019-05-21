@@ -1854,6 +1854,14 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('api/latest_wiki_entries').then(function (response) {
         _this.entries = response.data.slice(0, 10);
+
+        _this.entries.forEach(function (entry) {
+          for (var key in entry) {
+            if (entry[key][0] == '\"') {
+              entry[key] = entry[key].substring(1, entry[key].length - 1);
+            }
+          }
+        });
       });
     }
   }
@@ -38774,11 +38782,9 @@ var render = function() {
                           "td",
                           { staticStyle: { "vertical-align": "middle" } },
                           [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(entry.link) +
-                                "\n                        "
-                            )
+                            _c("a", { attrs: { href: entry.link } }, [
+                              _vm._v(" " + _vm._s(entry.link))
+                            ])
                           ]
                         )
                       ])

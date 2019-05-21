@@ -40,7 +40,7 @@
                                 {{ entry.username }}
                             </td>
                             <td style="vertical-align: middle;">
-                                {{ entry.link }}
+                                <a :href="entry.link"> {{ entry.link }}</a>
                             </td>
                         </tr>
                     </tbody>
@@ -87,8 +87,15 @@
              */
             getEntries() {
                 axios.get('api/latest_wiki_entries')
-                        .then(response => {
+                        .then(response => { 
                             this.entries = response.data.slice(0,10);
+                            this.entries.forEach(entry => {
+                                for (var key in entry) {
+                                    if(entry[key][0] == '\"') {
+                                        entry[key] = entry[key].substring(1, entry[key].length - 1);
+                                    }
+                                }
+                            });
                         });
             },
         }
