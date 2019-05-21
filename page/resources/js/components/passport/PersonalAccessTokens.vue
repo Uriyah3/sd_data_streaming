@@ -26,12 +26,20 @@
                         You have not created any personal access tokens. These are used to access the api from outside this application, make sure to safeguard these tokens.
                     </p>
 
+                    <p v-if="tokens.length > 0">
+                        Using these tokens you will be authorized to use the following endpoints: 
+                        <ul>
+                            <li>/api/latest_wiki_entries</li>
+                            <li>/api/all_wiki_entries</li>
+                        </ul>
+                    </p>
+
                     <!-- Personal Access Tokens -->
-                    <table class="table table-borderless mb-0" v-if="tokens.length > 0">
+                    <table class="table mb-0" v-if="tokens.length > 0">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th></th>
+                                <th style="border-top:0;">Name</th>
+                                <th style="border-top:0;"></th>
                             </tr>
                         </thead>
 

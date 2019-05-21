@@ -1779,12 +1779,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  /*
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      entries: []
+    };
+  },
+
+  /**
+   * Prepare the component (Vue 1.x).
+   */
+  ready: function ready() {
+    this.prepareComponent();
+  },
+
+  /**
+   * Prepare the component (Vue 2.x).
+   */
   mounted: function mounted() {
-    console.log('Component mounted.');
-    axios.get('api/all_wiki_entries').then(function (response) {
-      return console.log(response);
-    });
+    this.prepareComponent();
+  },
+  methods: {
+    /**
+     * Prepare the component.
+     */
+    prepareComponent: function prepareComponent() {
+      this.getEntries();
+    },
+
+    /**
+     * Get all of the personal access tokens for the user.
+     */
+    getEntries: function getEntries() {
+      var _this = this;
+
+      axios.get('api/latest_wiki_entries').then(function (response) {
+        _this.entries = response.data.slice(0, 10);
+      });
+    }
   }
 });
 
@@ -2269,6 +2340,14 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 __webpack_require__.r(__webpack_exports__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38607,28 +38686,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("div", { staticClass: "float-left" }, [
+          _vm._v(
+            "\n                Última actividad en Wikipedia (/api/latest_wiki_entries)\n            "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "float-right" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "button" },
+              on: { click: _vm.getEntries }
+            },
+            [
+              _c("span", { staticClass: "glyphicon glyphicon-refresh" }),
+              _vm._v(" Actualizar")
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "card-body", staticStyle: { padding: "0rem" } },
+        [
+          _vm.entries.length === 0
+            ? _c(
+                "p",
+                { staticClass: "mb-0", staticStyle: { padding: "1.25rem" } },
+                [_vm._v("\n                Cargando datos...\n            ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.entries.length > 0
+            ? _c(
+                "table",
+                { staticClass: "table table-striped table-hover mb-0" },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.entries, function(entry) {
+                      return _c("tr", [
+                        _c(
+                          "td",
+                          { staticStyle: { "vertical-align": "middle" } },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(entry.event) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticStyle: { "vertical-align": "middle" } },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(entry.item) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticStyle: { "vertical-align": "middle" } },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(entry.username) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticStyle: { "vertical-align": "middle" } },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(entry.link) +
+                                "\n                        "
+                            )
+                          ]
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            : _vm._e()
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { width: "15%" } }, [_vm._v("Evento")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "35%" } }, [_vm._v("Cosa")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "20%" } }, [_vm._v("Usuario")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "30%" } }, [_vm._v("Enlace")])
       ])
     ])
   }
@@ -39383,8 +39561,17 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.tokens.length > 0
-            ? _c("table", { staticClass: "table table-borderless mb-0" }, [
-                _vm._m(0),
+            ? _c("p", [
+                _vm._v(
+                  "\n                    Using these tokens you will be authorized to use the following endpoints: \n                    "
+                ),
+                _vm._m(0)
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.tokens.length > 0
+            ? _c("table", { staticClass: "table mb-0" }, [
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -39443,12 +39630,12 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _vm.form.errors.length > 0
                 ? _c("div", { staticClass: "alert alert-danger" }, [
-                    _vm._m(2),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("br"),
                     _vm._v(" "),
@@ -39595,7 +39782,7 @@ var render = function() {
       [
         _c("div", { staticClass: "modal-dialog" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
               _c("p", [
@@ -39611,7 +39798,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(5)
           ])
         ])
       ]
@@ -39623,8 +39810,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("ul", [
+      _c("li", [_vm._v("/api/latest_wiki_entries")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("/api/all_wiki_entries")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th")])
+      _c("tr", [
+        _c("th", { staticStyle: { "border-top": "0" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { "border-top": "0" } })
+      ])
     ])
   },
   function() {
