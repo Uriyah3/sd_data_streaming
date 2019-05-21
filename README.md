@@ -41,7 +41,7 @@ El desarrollo de la solución se compone de principalmente 4 partes
 ## Resultados
 
 ## Link de acceso a versión productiva del software.
-[GitHub Pages](https://github.com/Uriyah3/sd_data_streaming)
+[Sistemas Distribuidos Data Streaming](https://github.com/Uriyah3/sd_data_streaming)
 
 ##  Pasos para desplegar servicio desde cero, considerar:
 
