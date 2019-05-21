@@ -1,23 +1,93 @@
-HELP.md
+# Gradle .gitignore taken from the gradle github repository at
+# https://github.com/gradle/gradle/
+# ------
+# Gradle
+# ------
 .gradle
-/build/
-!gradle/wrapper/gradle-wrapper.jar
+/build
+/buildSrc/build
+/buildSrc/subprojects/*/build
+/subprojects/*/build
+/subprojects/docs/src/samples/*/*/build
+/subprojects/internal-android-performance-testing/build-android-libs
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+# IDEA
+# ----
 .idea
-*.iws
-*.iml
-*.ipr
-/out/
+.shelf
+/*.iml
+/*.ipr
+/*.iws
+/buildSrc/.idea
+/buildSrc/.shelf
+/buildSrc/*.iml
+/buildSrc/*.ipr
+/buildSrc/*.iws
+/buildSrc/out
+/buildSrc/subprojects/*/*.iml
+/buildSrc/subprojects/*/out
+/out
+/subprojects/*/*.iml
+/subprojects/*/out
+/.teamcity/*.iml
+/.teamcity/target
+
+# Eclipse
+# -------
+*.classpath
+*.project
+*.settings
+/bin
+/subprojects/*/bin
+atlassian-ide-plugin.xml
+.metadata/
+
+# NetBeans
+# --------
+.nb-gradle
+.nb-gradle-properties
+
+# Vim
+# ---
+*.sw[op]
+
+# Emacs
+# -----
+*~
+\#*\#
+.\#*
+
+# Textmate
+# --------
+.textmate
+
+# Sublime Text
+# ------------
+*.sublime-*
+
+# jEnv
+# ----
+.java-version
+
+# macOS
+# ----
+.DS_Store
+
+# HPROF
+# -----
+*.hprof
+
+# Work dirs
+# ---------
+/incoming-distributions
+/intTestHomeDir
+
+# Logs
+# ----
+/*.log
+
+# oh-my-zsh gradle plugin
+.gradletasknamecache
 
 ### NetBeans ###
 /nbproject/private/
@@ -28,3 +98,5 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+esysapp*.json
