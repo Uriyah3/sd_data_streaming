@@ -1,7 +1,5 @@
 package com.streaming.wiki.controllers;
 
-
-import com.streaming.wiki.exceptions.ResourceNotFoundException;
 import com.streaming.wiki.models.Wikipedia_Entries;
 import com.streaming.wiki.repositories.Wikipedia_Entries_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
