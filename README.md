@@ -14,7 +14,7 @@ El problema al cual nos enfrentamos consta de dos partes principalmente. En prim
 
 ## Enfoque de solución
 
-En este caso, el enfoque utilizado aborda el problema desde una perspectiva de Sistema Distribuido, utilizando las herramientas que nos brinda Google CloudSQL para poder flexibilizar la capacidad de almacenamiento y, por ende el rendimiento de nuestra base de datos ante determinados escenarios de manera automática.
+En este caso, el enfoque utilizado aborda el problema desde una perspectiva de Sistema Distribuido, utilizando las herramientas que nos brinda Google Cloud Platform para poder flexibilizar la capacidad de almacenamiento y, por ende el rendimiento de nuestra base de datos y en general, de cualquiera de los servicios que en ella se esplieguen, ante determinados escenarios de manera automática o previamente concertada según sea el caso.
 
 
 ## Desarrollo de la actividad
@@ -37,7 +37,7 @@ El desarrollo de la solución se compone de principalmente 4 partes
 - Código en java obtenido y modificado desde [PubNub Java SDK 4.23.0](https://www.pubnub.com/docs/java-se-java/pubnub-java-sdk) utilizado para ingerir los datos desde [Wikipedia Changes](https://www.pubnub.com/developers/realtime-data-streams/wikipedia-changes) y enviarlos a la instancia mencionada en el punto anterior.
 
 
-- Código en java en el framework springboot utilizado para disponibilizar una pequeña API que simplemente obtiene todas las entradas almacenadas en la instancia de mysql en Google Cloud Platform.
+- Código en Java en el Framework SpringBoot utilizado para disponibilizar una pequeña API que obtiene todas las entradas almacenadas en la instancia de mysql en Google Cloud Platform.
 
 - Aplicación construida en Laravel, que disponibiliza y visualiza los datos adquiridos a través de la API mencionada en el punto anterior, en conjunto con el uso de credenciales para otorgar acceso a estos datos.  
 
@@ -52,12 +52,14 @@ A continuación, se presenta un diagrama en el cual se puede apreciar la estruct
 
 ##  Pasos para desplegar servicio desde cero:
 Antes de desplegar el servicio, considerar que:
+
 * Se utilizó una instancia de Cloud SQL para la base de datos PostgreSQL (que es donde se guardan los datos del streaming).
 * Se tuvo problemas en automatizar el servicio que recibe los datos del stream y los almacena en la base de datos.
 * El servicio que almacena los datos y la API que disponibliza los datos se implementaron para poder correr en Google App Engine.
 * La página utiliza una base de datos simple (hosteada gratis en [db4free](https://db4free.net)) para almacenar a los usuarios y los tokens que pueden utilizar estos para acceder a la API. Además, la página se encuentra actualmente en Heroku, pero se puede utilizar cualquier otro servicio para su deployment.
 
 Para desplegar este servicio, los pasos son los siguientes:
+
 1. Crear una cuenta en GCP y un proyecto con la facturación activada.
 2. Crear una instancia de Cloud SQL [siguiendo esta guía de Google](https://cloud.google.com/sql/docs/postgres/quickstart).
 3. Instalar la [SDK de Google Cloud](https://cloud.google.com/sdk/docs/) e inicializarla. Esta es utilizada para realizar el deployment de los servicios ya mencionados.
