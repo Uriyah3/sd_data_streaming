@@ -48,7 +48,7 @@ A continuación, se presenta un diagrama en el cual se puede apreciar la estruct
 
 
 ## Link de acceso a versión productiva del software.
-[Sistemas Distribuidos Access to streamed data](https://wikipedia-changes-page.herokuapp.com/)
+[Sistemas Distribuidos - Real time data ingest from Wikipedia](https://wikipedia-changes-page.herokuapp.com/)
 
 ##  Pasos para desplegar servicio desde cero:
 Antes de desplegar el servicio, considerar que:
