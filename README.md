@@ -34,7 +34,7 @@ El desarrollo de la solución se compone de principalmente 4 partes
 
 - Instancia de SQL en Google Cloud Platform. En esta instancia, se almacenan los datos obtenidos a partir de la ingesta de datos en tiempo real de wikipedia.
 
-- Código en java utilizado para ingerir los datos y enviarlos a la instancia mencionada en el punto anterior.
+- Código en java obtenido y modificado desde [PubNub Java SDK 4.23.0](https://www.pubnub.com/docs/java-se-java/pubnub-java-sdk?fbclid=IwAR0KsL-N7WPiw2eXTolxJ3h1h9L3Oay3WcH3UnK3otzhT8FGNHPv1Z90Ulw) utilizado para ingerir los datos desde [Wikipedia Changes](https://www.pubnub.com/developers/realtime-data-streams/wikipedia-changes/?fbclid=IwAR2fQUiP9uvyC0zCF90hWxf8cizPxiizCHByl8YSNeXuVZjsqJANvNWgLHk) y enviarlos a la instancia mencionada en el punto anterior.
 
 - Código en java en el framework springboot utilizado para disponibilizar una pequeña API que simplemente obtiene todas las entradas almacenadas en la instancia de mysql en Google Cloud Platform.
 
