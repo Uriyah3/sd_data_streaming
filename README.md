@@ -42,6 +42,10 @@ El desarrollo de la solución se compone de principalmente 4 partes
 - Aplicación construida en Laravel, que disponibiliza y visualiza los datos adquiridos a través de la API mencionada en el punto anterior, en conjunto con el uso de credenciales para otorgar acceso a estos datos.  
 
 ## Resultados
+A continuación, se presenta un diagrama en el cual se puede apreciar la estructura general de la solución que se brinda, partiendo desde la ingesta de datos en tiempo real hasta su disponibilziacion en la plataforma web.
+
+![Screenshot](diagrama.png)
+
 
 ## Link de acceso a versión productiva del software.
 [Sistemas Distribuidos Access to streamed data](https://wikipedia-changes-page.herokuapp.com/)
