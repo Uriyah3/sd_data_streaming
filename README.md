@@ -24,6 +24,8 @@ En este caso, el enfoque utilizado aborda el problema desde una perspectiva de S
 Dentro de los principales inconvenientes que se tuvo a la hora de llevar a cabo la solución, se encuentran:
 
 - Curva de aprendizaje en Google Cloud Platform.
+- Curva de aprendizaje Yaml.
+- Conexión Rest API con PostgreSQL.
 - Hackeo a nuestra plataforma.
 
 ### Clases/funciones/procedimientos principales del desarrollo.
