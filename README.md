@@ -24,7 +24,7 @@ En este caso, el enfoque utilizado aborda el problema desde una perspectiva de S
 Dentro de los principales inconvenientes que se tuvo a la hora de llevar a cabo la solución, se encuentran:
 
 - Curva de aprendizaje en Google Cloud Platform.
-- Curva de aprendizaje Yaml.
+- Curva de aprendizaje Yaml y como aplicarlo en la GCP.
 - Conexión Rest API con PostgreSQL.
 - Hackeo a nuestra plataforma.
 
@@ -34,7 +34,7 @@ El desarrollo de la solución se compone de principalmente 4 partes
 
 - Instancia de SQL en Google Cloud Platform. En esta instancia, se almacenan los datos obtenidos a partir de la ingesta de datos en tiempo real de wikipedia.
 
-- Código en java obtenido y modificado desde [PubNub Java SDK 4.23.0](https://www.pubnub.com/docs/java-se-java/pubnub-java-sdk?fbclid=IwAR0KsL-N7WPiw2eXTolxJ3h1h9L3Oay3WcH3UnK3otzhT8FGNHPv1Z90Ulw) utilizado para ingerir los datos desde [Wikipedia Changes](https://www.pubnub.com/developers/realtime-data-streams/wikipedia-changes/?fbclid=IwAR2fQUiP9uvyC0zCF90hWxf8cizPxiizCHByl8YSNeXuVZjsqJANvNWgLHk) y enviarlos a la instancia mencionada en el punto anterior.
+- Código en java utilizado para ingerir los datos y enviarlos a la instancia mencionada en el punto anterior.
 
 - Código en java en el framework springboot utilizado para disponibilizar una pequeña API que simplemente obtiene todas las entradas almacenadas en la instancia de mysql en Google Cloud Platform.
 
@@ -43,10 +43,23 @@ El desarrollo de la solución se compone de principalmente 4 partes
 ## Resultados
 
 ## Link de acceso a versión productiva del software.
-[Sistemas Distribuidos Data Streaming](https://github.com/Uriyah3/sd_data_streaming)
+[Sistemas Distribuidos Access to streamed data](https://wikipedia-changes-page.herokuapp.com/)
 
-##  Pasos para desplegar servicio desde cero, considerar:
+##  Pasos para desplegar servicio desde cero:
+Antes de desplegar el servicio, considerar que:
+* Se utilizó una instancia de Cloud SQL para la base de datos PostgreSQL (que es donde se guardan los datos del streaming).
+* Se tuvo problemas en automatizar el servicio que recibe los datos del stream y los almacena en la base de datos.
+* El servicio que almacena los datos y la API que disponibliza los datos se implementaron para poder correr en Google App Engine.
+* La página utiliza una base de datos (hosteada gratis en db4free.net) simple para almacenar a los usuarios y los tokens que pueden utilizar estos usuarios para acceder a la API. Además, la página se encuentra actualmente en Heroku, pero se puede utilizar cualquier otro servicio para el deployment de la página.
 
-### Maquina linux estándar (tomar como referencia ubuntu server en su última versión LTS)
-
-### Implementar arquitectura como código (Yaml y TerraForm).
+Para desplegar este servicio, los pasos son los siguientes:
+1. Crear una cuenta en GCP y un proyecto con la facturación activada.
+2. Crear una instancia de Cloud SQL [siguiendo esta guía de Google](https://cloud.google.com/sql/docs/postgres/quickstart).
+3. Instalar la [SDK de Google Cloud](https://cloud.google.com/sdk/docs/) e inicializarla. Esta es utilizada para realizar el deployment de los servicios ya mencionados.
+4. Instalar el App Engine SDK para Java utilizando `gcloud components install app-engine-java` luego de haber inicializado gcloud en la carpeta del proyecto.
+5. Clonar este proyecto y hacer `cd streaming`
+6. Cambiar el enlace de la conexión de la base de datos (buscar `jdbc:postgresql://google/...` en el proyecto) para conectarte a tu instancia de Cloud SQL y a la base de datos que hayas creado ahí. [Apretar aquí para más instrucciones sobre este paso](https://github.com/GoogleCloudPlatform/cloud-sql-jdbc-socket-factory).
+7. Para poder conectarte a la base de datos en el entorno local, ejecutando `./gradlew bootRun` en Linux, o `gradlew.bat bootRun` en Windows, debes estar conectado por medio de gcloud a una cuenta de servicio que tenga los suficientes permisos, o definir la variable de entorno GOOGLE_APPLICATION_CREDENTIALS para que apunte a un archivo json que tenga las credenciales de una cuenta de servicio con los permisos suficientes para escribir y leer la base de datos.
+8. Para realizar el deployment, entrar a la carpeta rest/streaming_wiki y ejecutar el comando `./gradlew appengineDeploy` (si sale un error sobre 'default' y 'apirest', cambiar 'service: apirest' en src/main/appengine/app.yaml a 'service: default'). Seguir esta misma instrucción para el deployment de 'streaming', aunque falta agregar el app.yaml neceario en este caso. 
+9. Como no se pudo hacer que el streaming se ejecutará automáticamente, entrar por SSH al appengine de la instancia y clonar el repositorio dentro, instalar Java y ejecutar el comando `nohup ./gradlew bootRun &` para realizar el streaming.
+10. [Para el deployment de la página en Heroku](https://devcenter.heroku.com/articles/getting-started-with-laravel). Cambiar las conexiones de la api en el archivo 'page/routes/api.php'.
