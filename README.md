@@ -39,12 +39,17 @@ El desarrollo de la solución se compone de principalmente 4 partes
 
 - Código en Java en el Framework SpringBoot utilizado para disponibilizar una pequeña API que obtiene todas las entradas almacenadas en la instancia de mysql en Google Cloud Platform.
 
-- Aplicación construida en Laravel, que disponibiliza y visualiza los datos adquiridos a través de la API mencionada en el punto anterior, en conjunto con el uso de credenciales para otorgar acceso a estos datos.  
+- Aplicación construida en Laravel, que disponibiliza y visualiza los datos adquiridos a través de la API mencionada en el punto anterior, en conjunto con el uso de credenciales para otorgar acceso a estos datos.
 
-## Resultados
 A continuación, se presenta un diagrama en el cual se puede apreciar la estructura general de la solución que se brinda, partiendo desde la ingesta de datos en tiempo real hasta su disponibilización en la plataforma web.
 
 ![Screenshot](diagrama.png)
+
+## Resultados
+
+Imagen demostración de la página web una vez el usuario se registra y logea en esta, en donde, se aprecian los datos que van entrando a la base de datos por medio de la ingesta en tiempo real. Al hacer clic en el botón 'refresh', esta se va actualizando con las entradas más recientes.
+
+![Screenshot](demo1.png)
 
 
 ## Link de acceso a versión productiva del software.
